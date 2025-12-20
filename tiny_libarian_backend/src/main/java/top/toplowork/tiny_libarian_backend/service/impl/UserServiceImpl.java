@@ -1,14 +1,14 @@
 package top.toplowork.tiny_libarian_backend.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import top.toplowork.tiny_libarian_backend.mapper.UserMapper;
 import top.toplowork.tiny_libarian_backend.pojo.User;
 import top.toplowork.tiny_libarian_backend.service.UserService;
-
-import java.util.List;
 
 @Service
 @Slf4j
@@ -31,12 +31,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findUserByName(String name) {
-        return userMapper.selectList(new QueryWrapper<User>().eq("username",name));
+    public IPage<User> findUserByName(String name,Integer pageNum,Integer pageSize) {
+        Page<User> page = new Page<>(pageNum,pageSize);
+        return userMapper.selectPage(page,new QueryWrapper<User>().eq("username",name));
     }
 
     @Override
-    public User findUserById(Integer id) {
-        return userMapper.selectById(id);
+    public IPage<User> findUserById(Integer id,Integer pageNum,Integer pageSize) {
+        Page<User> page = new Page<>(pageNum,pageSize);
+        return userMapper.selectPage(page,new QueryWrapper<User>().eq("id",id));
+    }
+
+    @Override
+    public IPage<User> list(Integer pageNum, Integer pageSize){
+        Page<User> page=new Page<>(pageNum,pageSize);
+        return userMapper.selectPage(page,null);
     }
 }

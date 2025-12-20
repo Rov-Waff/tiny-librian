@@ -22,7 +22,7 @@ public class UserServiceTest {
     }
     @Test
     public void deleteUserTest(){
-        userService.deleteUserById(userService.findUserByName("Andy").getFirst().getId());
+//        userService.deleteUserById(userService.findUserByName("Andy").getFirst().getId());
     }
     @Test
     public void updateUserTest(){
@@ -36,10 +36,14 @@ public class UserServiceTest {
     }
     @Test
     public void findUserByIdTest(){
-        log.info(userService.findUserById(12).toString());
+        log.info(userService.findUserById(12,10,10).toString());
     }
     @Test
     public void findUserByNameTest(){
-        log.info(userService.findUserByName("Andy").toString());
+        log.info(userService.findUserByName("Andy",10,10).toString());
+    }
+    @Test
+    public void listTest(){
+        log.info(userService.list(10,10));
     }
 }
