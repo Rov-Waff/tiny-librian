@@ -44,6 +44,6 @@ public class UserServiceTest {
     }
     @Test
     public void listTest(){
-        log.info(userService.list(10,10));
+        log.info(userService.list(10,10).toString());
     }
 }
