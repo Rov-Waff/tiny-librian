@@ -45,6 +45,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public IPage<User> list(Integer pageNum, Integer pageSize){
         Page<User> page=new Page<>(pageNum,pageSize);
-        return userMapper.selectPage(page,null);
+        userMapper.selectPage(page,null);
+        return page;
     }
 }
